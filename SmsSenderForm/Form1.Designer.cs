@@ -45,7 +45,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "COM5";
+            this.textBox1.Text = "COM6";
             // 
             // button1
             // 
@@ -75,6 +75,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "отправить сообщение";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -109,6 +110,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "+79033240031";
             // 
             // textBox3
             // 
@@ -116,6 +118,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 8;
+            this.textBox3.Text = "Hello World";
             // 
             // MainForm
             // 
