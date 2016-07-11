@@ -26,7 +26,6 @@ namespace SmsSenderForm
            serialPort = new SerialPort(textBox1.Text);
             serialPort.BaudRate = 2400; 
             serialPort.DataBits = 7; 
-
             serialPort.StopBits = StopBits.One;          
             serialPort.Parity = Parity.Odd; 
             serialPort.ReadTimeout = 500;
@@ -38,6 +37,8 @@ namespace SmsSenderForm
 
         private void button2_Click(object sender, EventArgs e)
         {
+           
+
             if (serialPort != null)
             {
                 if (serialPort.IsOpen)
@@ -55,13 +56,22 @@ namespace SmsSenderForm
 
         private void button3_Click(object sender, EventArgs e)
         {
+            var encoding = Encoding.GetEncoding("KOI8-R");
+            var bytes = encoding.GetBytes(textBox3.Text);
+            for (int i = 0; i < bytes.Length; ++i)
+            {
+                bytes[i] = (byte)(bytes[i] & 0x7F);
+            }
+            var String = encoding.GetString(bytes);
+
             serialPort.WriteLine("AT\r\n");  
             System.Threading.Thread.Sleep(500);
             serialPort.Write("AT+CMGF=1\r\n"); 
             System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(500);
             serialPort.Write("AT+CMGS=\"" + textBox2.Text + "\"" + "\r\n");
             System.Threading.Thread.Sleep(500);
-            serialPort.Write(textBox3.Text + char.ConvertFromUtf32(26) + "\r\n");
+            serialPort.Write(String + char.ConvertFromUtf32(26) + "\r\n");
             System.Threading.Thread.Sleep(500);
         }
     }
