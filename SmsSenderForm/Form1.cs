@@ -62,7 +62,7 @@ namespace SmsSenderForm
             {
                 bytes[i] = (byte)(bytes[i] & 0x7F);
             }
-            var String = encoding.GetString(bytes);
+            var StringTranslite = encoding.GetString(bytes);
 
             serialPort.WriteLine("AT\r\n");  
             System.Threading.Thread.Sleep(500);
@@ -71,7 +71,7 @@ namespace SmsSenderForm
             System.Threading.Thread.Sleep(500);
             serialPort.Write("AT+CMGS=\"" + textBox2.Text + "\"" + "\r\n");
             System.Threading.Thread.Sleep(500);
-            serialPort.Write(String + char.ConvertFromUtf32(26) + "\r\n");
+            serialPort.Write(StringTranslite + char.ConvertFromUtf32(26) + "\r\n");
             System.Threading.Thread.Sleep(500);
         }
     }
